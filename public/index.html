@@ -2,10 +2,14 @@
 <html>
   <head>
     <title>My Electron-React app</title>
+    <link rel="stylesheet" href="../www/bower_components/font-awesome/css/font-awesome.min.css"/>
   </head>
   <body>
-    <div id="content"></div>
+    <div id="root"></div>
   </body>
+  <script>
+      Electron = require('electron');
+  </script>
   <script src="http://localhost:8080/webpack-dev-server.js"></script>
   <script src="http://localhost:8080/build/bundle.js"></script>
 </html>
