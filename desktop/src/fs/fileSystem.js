@@ -20,8 +20,14 @@ var FileSystem = function() {
 };
 
 var getPath = function(pathType, relativePath) {
-    var userPath = app.getPath(pathType);
-    Logger.info('userPath='+userPath);
+    try{
+        var userPath = app.getPath(pathType);
+        Logger.info('userPath = '+userPath);
+    }catch(e)
+    {
+        Logger.error(e);
+    }
+
     return path.join(userPath, relativePath);
 };
 

@@ -17,7 +17,7 @@ import ProjectConstants from '../../../web/src/constants/ipc/ProjectConstants'
 import WindowConstants from '../../../web/src/constants/ipc/WindowConstants'
 import ModuleConstants from '../../../web/src/constants/ipc/ModuleConstants'
 
-import ErrorConstants from 'shared/constants/ipc/ErrorConstants'
+import ErrorConstants from '../../../web/src/constants/ipc/ErrorConstants'
 const {
     ERROR,
 } = ErrorConstants
@@ -45,6 +45,7 @@ function sendToRenderer(channel, payload, windowId) {
         payload = {} // not sure if this will cause problems when undefined or null
     }
 
+    Logger.info('preferences='+windowId);
     if (windowId == 'preferences') {
         try {
             if (!global.preferencesWindow) return
@@ -55,6 +56,7 @@ function sendToRenderer(channel, payload, windowId) {
         }
     } else {
         //TODO:locate all openWindows
+        Logger.info('openWindows= '+global.openWindows);
         for (var id in global.openWindows) {
             global.openWindows[id].webContents.send(channel, payload)
         }
@@ -88,6 +90,7 @@ class Bridge extends EventEmitter {
 
     //TODO:this function un-clear
     send(payload, windowId) {
+        Logger.info('bridge send , type='+payload.type);
         this._send(payload.type, payload, windowId)
     }
 

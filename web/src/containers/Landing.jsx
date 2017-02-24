@@ -34,9 +34,10 @@ class Landing extends Component {
         }
     }
     componentWillMount() {
+        //this function will trigger size change,origin height is 450
         this.props.dispatch(resizeWindow({
             width: 1240,
-            height: 450,
+            height: 650,
             center: true,
         }))
     }

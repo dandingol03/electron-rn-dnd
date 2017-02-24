@@ -18,9 +18,11 @@ process.on('exit', onExit.bind(this, child))
 
 
 
-
+//desktop gulpfile
 var child = fork(path.join(__dirname, './node_modules/.bin/gulp'), ['start'], {
     cwd: path.join(__dirname, './')
 })
 
 process.on('exit', onExit.bind(this, child))
+
+

@@ -1,83 +1,107 @@
 /**
  * Created by danding on 17/2/5.
  */
-import _ from 'lodash'
+/**
+ *    Copyright (C) 2015 Deco Software Inc.
+ *
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU Affero General Public License, version 3,
+ *    as published by the Free Software Foundation.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
-import {
-    ADD_TAB,
-    MOVE_TAB,
-    CLOSE_TAB,
-    CLOSE_ALL_TABS,
-    FOCUS_TAB,
-    SWAP_TAB,
-    MAKE_TAB_PERMANENT,
-} from '../actions/tabActions'
-
-import TabUtils from '../utils/TabUtils'
-
-const initialState = {}
-
-const tabReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case ADD_TAB:
-        {
-            const {containerId, tabId, position} = action.payload
-            return Object.assign({}, state, {
-                [containerId]: TabUtils.addTab(state[containerId] || {}, tabId, position),
-            })
+export const ADD_TAB = 'ADD_TAB'
+export const addTab = (containerId, tabId, position) => {
+    return {
+        type: ADD_TAB,
+        payload: {
+            containerId,
+            tabId,
+            position,
         }
-            break
-        case SWAP_TAB:
-        {
-            const {containerId, tabId, newTabId} = action.payload
-            return Object.assign({}, state, {
-                [containerId]: TabUtils.swapTab(state[containerId] || {}, tabId, newTabId),
-            })
-        }
-            break
-        case CLOSE_TAB:
-        {
-            const {containerId, tabId} = action.payload
-            return Object.assign({}, state, {
-                [containerId]: TabUtils.closeTab(state[containerId] || {}, tabId),
-            })
-        }
-            break
-        case FOCUS_TAB:
-        {
-            const {containerId, tabId} = action.payload
-            return Object.assign({}, state, {
-                [containerId]: TabUtils.focusTab(state[containerId] || {}, tabId),
-            })
-        }
-            break
-        case MAKE_TAB_PERMANENT:
-        {
-            const {containerId} = action.payload
-            return Object.assign({}, state, {
-                [containerId]: TabUtils.makeTabPermanent(state[containerId] || {}),
-            })
-        }
-            break
-        case CLOSE_ALL_TABS:
-        {
-            const {containerId} = action.payload
-
-            // If a containerId is passed, close all its tabs
-            if (containerId) {
-                return Object.assign({}, state, {
-                    [containerId]: null,
-                })
-                // Else, close all tabs for all containers
-            } else {
-                return {}
-            }
-        }
-            break
-        default:
-            return state
-            break
     }
 }
 
-export default tabReducer
+// TODO: Implement
+export const MOVE_TAB = 'MOVE_TAB'
+export const moveTab = (containerId, tabId, position) => {
+    return {
+        type: MOVE_TAB,
+        payload: {
+            containerId,
+            tabId,
+            position,
+        }
+    }
+}
+
+export const CLOSE_TAB = 'CLOSE_TAB'
+export const closeTab = (containerId, tabId) => {
+    return {
+        type: CLOSE_TAB,
+        payload: {
+            containerId,
+            tabId,
+        }
+    }
+}
+
+export const CLOSE_ALL_TABS = 'CLOSE_ALL_TABS'
+export const closeAllTabs = (containerId) => {
+    return {
+        type: CLOSE_ALL_TABS,
+        payload: {
+            containerId,
+        }
+    }
+}
+
+export const FOCUS_TAB = 'FOCUS_TAB'
+export const focusTab = (containerId, tabId) => {
+    return {
+        type: FOCUS_TAB,
+        payload: {
+            containerId,
+            tabId,
+        }
+    }
+}
+export const clearFocusedTab = (containerId) => {
+    return {
+        type: FOCUS_TAB,
+        payload: {
+            containerId,
+            tabId: null,
+        }
+    }
+}
+
+export const SWAP_TAB = 'SWAP_TAB'
+export const swapTab = (containerId, tabId, newTabId) => {
+    return {
+        type: SWAP_TAB,
+        payload: {
+            containerId,
+            tabId,
+            newTabId,
+        }
+    }
+}
+
+export const MAKE_TAB_PERMANENT = 'MAKE_TAB_PERMANENT'
+export const makeTabPermanent = (containerId) => {
+    return {
+        type: MAKE_TAB_PERMANENT,
+        payload: {
+            containerId,
+        }
+    }
+}

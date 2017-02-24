@@ -3,11 +3,18 @@
  */
 
 import _ from 'lodash'
-
 import windowHandler from '../handlers/windowHandler'
+import  fileHandler from '../handlers/fileHandler';
+import  projectHandler from '../handlers/projectHandler';
+import preferenceHandler from '../handlers/preferenceHandler';
+import componentHandler from '../handlers/componentHandler';
 
 const handlers = [
-    windowHandler
+    windowHandler,
+    fileHandler,
+    projectHandler,
+    preferenceHandler,
+    componentHandler
 ]
 
 export const registerHandlers = () => {

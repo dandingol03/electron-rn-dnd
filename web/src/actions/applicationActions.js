@@ -66,7 +66,9 @@ export function openProject(projectPath = null) {
 
 
         const open = (path) => {
+
             request(_openProject(path)).then(() => {
+                alert('got back');
                 RecentProjectUtils.addProjectPath(path)
             })
         }

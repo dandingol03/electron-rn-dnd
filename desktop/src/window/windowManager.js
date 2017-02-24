@@ -23,22 +23,22 @@
 var fs = require('fs');
 var path = require('path');
 
-var BrowserWindow = require('electron').BrowserWindow; // Module to create native browser window.
-var dialog = require('electron').dialog;
-var app = require('electron').app;
+ var BrowserWindow = require('electron').BrowserWindow; // Module to create native browser window.
+ var dialog = require('electron').dialog;
+ var app = require('electron').app;
 
-var gulpLogger =require( './desktop/src/logger/gulpLogger');
+ var gulpLogger =require( '../logger/gulpLogger');
+//
+ var upgradeWindow = null
+//
+ import _ from 'lodash';
 
-var upgradeWindow = null
+ import fileHandler from '../handlers/fileHandler'
+ import projectHandler from '../handlers/projectHandler'
 
-import _ from 'lodash'
+ import { INFO, QUESTION, } from '../constants/DecoDialog'
 
-import fileHandler from '../handlers/fileHandler'
-import projectHandler from '../handlers/projectHandler'
-
-import { INFO, QUESTION, } from '../constants/DecoDialog'
-
-import upgradeHandler from '../handlers/upgradeHandler'
+ //import upgradeHandler from '../handlers/upgradeHandler'
 import {
     PUBLIC_FOLDER,
     APP_SUPPORT,
@@ -54,10 +54,10 @@ const intializeMainWindow = (browserWindow) => {
     browserWindow.webContents.session.clearCache(function() {
         //clear cache so updates are shown frequently
     });
-
+    browserWindow.openDevTools();
     browserWindow.hide();
     browserWindow.setTitle('Deco');
-    browserWindow.loadURL(WindowManager.getProjectBaseURL());
+    browserWindow.loadURL('file://' + __dirname + '/../../../public/index.html');
 
     var id = new Date().getTime().toString();
     global.openWindows[id] = browserWindow;
@@ -106,6 +106,9 @@ var WindowManager = {
     },
     checkNeedsUpgrade: function(version) {
         return new Promise((resolve, reject) => {
+            resolve();
+            return ;
+            //TODO:it is not the right time to integrate upgradeHandler
             if (upgradeHandler.needsUpgrade()) {
                 upgradeWindow = new BrowserWindow({
                     width: 475,
@@ -153,14 +156,15 @@ var WindowManager = {
                 height: height || global.workArea.height,
                 show: show || true,
                 titleBarStyle: 'hidden',
-                icon: path.join(PUBLIC_FOLDER, '/images/deco-icon.png')
+                icon: path.join(PUBLIC_FOLDER, '/images/logo.png')
             });
+
 
             intializeMainWindow(browserWindow);
 
             browserWindow.webContents.on('did-finish-load', function() {
-                resolve()
-                browserWindow.show()
+                resolve(browserWindow);
+                browserWindow.show();
             })
         })
     },

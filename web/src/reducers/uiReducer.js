@@ -19,7 +19,7 @@
  */
 
 import _ from 'lodash'
-import tabReducer from './tabReducer'
+import tabReducer from './tabReducer.js'
 
 import {
     SET_CONSOLE_VISIBILITY,

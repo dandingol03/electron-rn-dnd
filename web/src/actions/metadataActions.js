@@ -41,7 +41,7 @@ export const saveMetadata = (fileId) => {
 
         const output = {}
         //TODO:现在不扩展LiveValueUtils
-        //const liveValues = LiveValueUtils.denormalizeLiveValueMetadataFromDoc(metadata.liveValues, decoDoc)
+        const liveValues = LiveValueUtils.denormalizeLiveValueMetadataFromDoc(metadata.liveValues, decoDoc)
 
         if (! _.isEmpty(liveValues)) {
             output.liveValues = liveValues

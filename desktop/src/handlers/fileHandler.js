@@ -37,10 +37,10 @@ import {
     onSuccess,
 } from '../actions/genericActions'
 
-import ErrorConstants from 'shared/constants/ipc/ErrorConstants'
+import ErrorConstants from '../../../web/src/constants/ipc/ErrorConstants'
 const { ERROR, } = ErrorConstants
 
-import FileConstants from 'shared/constants/ipc/FileConstants'
+import FileConstants from '../../../web/src/constants/ipc/FileConstants'
 const {
     WATCH_PATH,
     FETCH_SUB_PATH,

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Webpack App</title>
+
+    <link rel="stylesheet" href="./src/css/main.css"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+
+<script src="http://localhost:3001/webpack-dev-server.js"></script>
+<script src="http://localhost:3001/build/bundle.js"></script>
+
+<div id="root"></div>
+<script>
+    $(document).ready(function () {
+        var dom_node=$("#root")[0];
+        dom_node.addEventListener("liveValuesChange",function (msg) {
+            alert(msg)
+        });
+    })
+</script>
+
+</body>
+</html>

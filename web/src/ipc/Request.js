@@ -9,6 +9,12 @@ const requestMap = {}
 let messageId = 1
 const generateMessageId = (channel) => channel + messageId++
 
+
+//so there is a process,client use ipcRenderer to send('request',....);
+//main process get the message,and because the response is asynchronised, client generate a messageId to store the callback
+//util the client get response,and it will invoke the callback
+//and the main process use bridge to make response and get request
+
 const _request = (channel, body) => {
     if (typeof channel !== 'string' || channel.length === 0) {
         throw new Error(`Invalid message channel: ${channel}`)

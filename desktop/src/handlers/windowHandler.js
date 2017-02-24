@@ -40,7 +40,7 @@ import {
     onSuccess,
     onError,
 } from '../actions/genericActions'
-import WindowConstants from 'shared/constants/ipc/WindowConstants'
+import WindowConstants from '../../../web/src/constants/ipc/WindowConstants'
 const {
     OPEN_PROJECT_DIALOG,
     SAVE_AS_DIALOG,
@@ -71,6 +71,7 @@ class WindowHandler {
             return
         }
 
+        //this function respond ->
         respond(openProjectDialog(selectedPaths[0]))
     }
 
